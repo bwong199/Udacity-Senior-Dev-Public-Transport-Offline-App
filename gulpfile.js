@@ -45,6 +45,8 @@ gulp.task('htmlpage', function() {
     .pipe(gulp.dest(htmlDst));
 });
 
+
+
 gulp.task('scripts', function(){
 	console.log('Starting scripts task');
 	return gulp.src('./src/scripts/*.js')
@@ -57,8 +59,9 @@ gulp.task('scripts', function(){
 gulp.task('scripts', function() {
   return gulp.src(['./src/scripts/*.js'])
     .pipe(concat('all.js'))
-    .pipe(gulp.dest('./build'));
+    .pipe(gulp.dest('./build/scripts/'));
 });
+
 
 gulp.task('styles', function() {
   gulp.src(['./src/styles/*.css'])

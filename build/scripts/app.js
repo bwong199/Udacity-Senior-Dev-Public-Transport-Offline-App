@@ -1,1 +1,1 @@
-"serviceWorker"in navigator&&navigator.serviceWorker.register("/sw.js",{scope:"/Senior_Dev_Public_Transport_App/"}).then(function(e){console.log("Registration succeeded. Scope is "+e.scope)})["catch"](function(e){console.log("Registration failed with "+e)});
+"serviceWorker"in navigator&&navigator.serviceWorker.register("./scripts/sw.js").then(function(){console.log("Service Worker Registered")})["catch"](function(e){console.log("Registration failed with "+e)});
