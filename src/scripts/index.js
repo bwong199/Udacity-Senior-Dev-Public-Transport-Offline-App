@@ -17,19 +17,20 @@ $(document).ready(function(){
             var name = stops[stop]["name"]
             var id = stops[stop]["onestop_id"]
             // console.log(stops[stop]["name"] + " " + id)
-            $("select").append("<option value="  + '"' +  id + '">'  + name + "</option>")
-
+            $("#departureOption").append("<option value="  + '"' +  id + '">'  + name + "</option>")
+            $("#arrivalOption").append("<option value="  + '"' +  id + '">'  + name + "</option>")
           }
           clearTimeout(urlRequestTimeout);
         }
     });
 
 
-    $("button").click(function(event){
-        $("p").text(" ")
+    $("#departureBtn").click(function(event){
+        $("#departure").text(" ")
         event.preventDefault();
 
-        var id = $("select option:selected").val()
+        var id = $("#departureOption option:selected").val()
+        console.log(id);
         var url = "https://transit.land/api/v1/schedule_stop_pairs?origin_onestop_id=" + id 
         console.log(id);
 
@@ -48,12 +49,43 @@ $(document).ready(function(){
 
 
                 $("#departure").append(departure_time + "<br>");
+                // $("#arrival").append(arrival_time + "<br>")
+              }
+              clearTimeout(urlRequestTimeout);
+            }
+        });
+    })
+
+    $("#arrivalBtn").click(function(event){
+        $("#arrival").text(" ")
+        event.preventDefault();
+
+        var id = $("#arrivalOption option:selected").val()
+        console.log(id);
+        var url = "https://transit.land/api/v1/schedule_stop_pairs?origin_onestop_id=" + id 
+  
+
+        $.ajax({
+            url: url,
+            dataType: "json",
+            jsonp: "callback",
+            success: function(response) {
+              // console.log(response);
+              var schedule_stops = response["schedule_stop_pairs"]
+              for (var stop in schedule_stops){ 
+                console.log(schedule_stops[stop]["destination_departure_time"])
+
+                var departure_time = schedule_stops[stop]["destination_departure_time"];
+                var arrival_time = schedule_stops[stop]["destination_arrival_time"];
+
+
                 $("#arrival").append(arrival_time + "<br>")
               }
               clearTimeout(urlRequestTimeout);
             }
         });
     })
+
 });
 
 
