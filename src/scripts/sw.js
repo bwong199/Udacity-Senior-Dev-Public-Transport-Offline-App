@@ -4,7 +4,7 @@ this.addEventListener('install', function(event) {
     caches.open('v1').then(function(cache) {
       return cache.addAll([
         '/',
-        'index.html'
+        '../index.html'
         // 'http://localhost:5000/Senior_Dev_Public_Transport_App'
 
 
@@ -17,13 +17,14 @@ this.addEventListener('activate', function (event) {
     event.waitUntil(
         caches.keys().then(function(keys){
             return Promise.all(keys.map(function(key, i){
-                if(key !== CACHE_VERSION){
+       
                     return caches.delete(keys[i]);
-                }
+                
             }))
         })
     )
 });
+
 this.addEventListener('fetch', function(event) {
   console.log(event.request.url);
   var response;

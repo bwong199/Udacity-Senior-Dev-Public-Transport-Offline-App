@@ -43,11 +43,12 @@ $(document).ready(function(){
               for (var stop in schedule_stops){ 
                 console.log(schedule_stops[stop]["destination_departure_time"])
 
-                var time = schedule_stops[stop]["destination_departure_time"]
+                var departure_time = schedule_stops[stop]["destination_departure_time"];
+                var arrival_time = schedule_stops[stop]["destination_arrival_time"];
 
 
-
-                $("p").append(time + "<br>")
+                $("#departure").append(departure_time + "<br>");
+                $("#arrival").append(arrival_time + "<br>")
               }
               clearTimeout(urlRequestTimeout);
             }
