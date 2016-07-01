@@ -7,9 +7,8 @@ this.addEventListener('install', function(event) {
         '/',
         '/scripts/index.js', 
         '/scripts/app.js',
-        'https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js',
-        'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
-        'https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js'
+        'http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js',
+        'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
       ])
     })
   );
@@ -19,13 +18,13 @@ this.addEventListener('activate', function(event) {
   event.waitUntil(self.clients.claim());
 });
 
-// this.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     caches.match(event.request).then(response => {
-//       return response || fetch(event.request);
-//     })
-//   );
-// });
+this.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      return response || fetch(event.request);
+    })
+  );
+});
 
 // this.addEventListener('activate', function(event) {
 
@@ -44,20 +43,20 @@ this.addEventListener('activate', function(event) {
 //   );
 // });
 
-this.addEventListener('fetch', function(event) {
-  console.log(event.request.url);
-  var response;
-  event.respondWith(caches.match(event.request).catch(function() {
-    return fetch(event.request);
-  }).then(function(r) {
-    response = r;
-    caches.open('v1').then(function(cache) {
-      cache.put(event.request, response);
-    });
-    return response.clone();
-  }).catch(function() {
-    return caches.match('/');
-  }));
-});
+// this.addEventListener('fetch', function(event) {
+//   console.log(event.request.url);
+//   var response;
+//   event.respondWith(caches.match(event.request).catch(function() {
+//     return fetch(event.request);
+//   }).then(function(r) {
+//     response = r;
+//     caches.open('v1').then(function(cache) {
+//       cache.put(event.request, response);
+//     });
+//     return response.clone();
+//   }).catch(function() {
+//     return caches.match('/');
+//   }));
+// });
 
 
