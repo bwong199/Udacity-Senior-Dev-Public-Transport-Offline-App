@@ -56,11 +56,11 @@ gulp.task('scripts', function(){
 		.pipe(gulp.dest('./build/scripts/'))
 });
 
-gulp.task('scripts', function() {
-  return gulp.src(['./src/scripts/*.js'])
-    .pipe(concat('all.js'))
-    .pipe(gulp.dest('./build/scripts/'));
-});
+// gulp.task('scripts', function() {
+//   return gulp.src(['./src/scripts/*.js'])
+//     .pipe(concat('all.js'))
+//     .pipe(gulp.dest('./build/scripts/'));
+// });
 
 
 gulp.task('styles', function() {
