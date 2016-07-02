@@ -143,7 +143,7 @@ $(document).ready(function(){
                   duration = duration + 60;
                 }
 
-                $("#duration").append(duration + "<br>");
+                $("#duration").append(duration + " mins" + "<br>");
               }
 
               clearTimeout(urlRequestTimeout);
