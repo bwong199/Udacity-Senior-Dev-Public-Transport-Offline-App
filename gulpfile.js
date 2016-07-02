@@ -56,6 +56,15 @@ gulp.task('scripts', function(){
 		.pipe(gulp.dest('./build/scripts/'))
 });
 
+gulp.task('offlineScripts', function(){
+  console.log('Starting scripts task');
+  return gulp.src('./src/*.js')
+    .pipe(uglify()).on('error', function(e){
+            console.log(e);
+         })
+    .pipe(gulp.dest('./build/'))
+});
+
 // gulp.task('scripts', function() {
 //   return gulp.src(['./src/scripts/*.js'])
 //     .pipe(concat('all.js'))
@@ -71,7 +80,7 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./build/styles/'));
 });
 
-gulp.task('default', ['imagemin', 'htmlpage', 'scripts', 'styles'], function() {
+gulp.task('default', ['imagemin', 'htmlpage', 'scripts', 'styles', 'offlineScripts'], function() {
   // watch for HTML changes
   gulp.watch('./src/*.html', function() {
     gulp.run('htmlpage');
@@ -86,4 +95,9 @@ gulp.task('default', ['imagemin', 'htmlpage', 'scripts', 'styles'], function() {
   gulp.watch('./src/styles/*.css', function() {
     gulp.run('styles');
   });
+
+  gulp.watch('./src/*.js', function() {
+    gulp.run('jshint', 'offlineScripts');
+  });
+
 });
