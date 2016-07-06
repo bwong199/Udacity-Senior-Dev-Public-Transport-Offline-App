@@ -74,7 +74,7 @@ gulp.task('offlineScripts', function(){
 
 gulp.task('styles', function() {
   gulp.src(['./src/styles/*.css'])
-    .pipe(concat('styles.css'))
+    .pipe(concat('bootstrap.min.css'))
     .pipe(autoprefix('last 2 versions'))
     .pipe(minifyCSS())
     .pipe(gulp.dest('./build/styles/'));
