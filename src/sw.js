@@ -6,9 +6,14 @@ this.addEventListener('install', function(event) {
       return cache.addAll([
         '/',
         '/index.html', 
-        '/scripts/app.js',
+        '/app.js',
+        '/scripts/index.js',
+        '/scripts/bootstrap.min.js',
+        '/scripts/jquery.min.js',
         'http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js',
-        'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
+        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
+        'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
+        'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js'
       ])
     })
   );
